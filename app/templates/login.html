@@ -7,12 +7,14 @@
     <div class="row justify-content-center">
         Login efetuado com sucesso.
     </div>
+
     <div class="row justify-content-center">
-        Clique no botão para acessar o Formulário.
+        <button class = 'btn btn-success' style="margin-top: 10px;width:100px"><a class ='text-white' href="{% url 'form' %}">Formulário</a></button>
     </div>
     <div class="row justify-content-center">
-        <button class = 'btn btn-success' style="margin-top: 10px;"><a class ='text-white' href="{% url 'form' %}">Formulário</a></button>
+        <button class = 'btn btn-primary' style="margin-top: 10px;width:100px"><a class ='text-white' href="{% url 'form' %}">Relatório</a></button>
     </div>
+
  </main>
 </body>
 {% endblock conteudo %}

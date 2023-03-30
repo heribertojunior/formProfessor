@@ -76,18 +76,17 @@ def index(request):
           # f_cont.materia = Materias.objects.get(id=int(request.POST.get('materia')))
           # f_cont.save()
 
-            return render (request, "questoes.html")
+            if int(request.POST.get('materia'))%2 == 0:
+                print (request.POST.get('materia'))
+                return render (request, "materias/series/9ano/portugues/portugues9.html")
+            elif int(request.POST.get('materia'))%2 !=  0:
+                print (request.POST.get('materia'))
+                return render (request, "materias/series/9ano/matematica/matematica9.html")
 
         else:
 
             print("Nao validou.")
             return render (request, "index.html")
-        if request.POST.get('componente_curricular') == 'Matematica':
-            print (request.POST.get('componente_curricular'))
-            return render (request, "questoes.html")
-        elif request.POST.get('componente_curricular') == 'Portugues':
-            print (request.POST.get('componente_curricular'))
-            return render (request, "portugues.html")
 
     else:
             context = {
