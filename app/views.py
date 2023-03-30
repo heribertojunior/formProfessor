@@ -75,13 +75,28 @@ def index(request):
           # f_cont.professor = Professor.objects.get(id=form_professor.instance.id)
           # f_cont.materia = Materias.objects.get(id=int(request.POST.get('materia')))
           # f_cont.save()
+            serie = Serie.objects.get(id=int(request.POST.get('serie')))
+            print(serie.serie)
+            if serie.serie == "9º Ano EF":
 
-            if int(request.POST.get('materia'))%2 == 0:
-                print (request.POST.get('materia'))
-                return render (request, "materias/series/9ano/portugues/portugues9.html")
-            elif int(request.POST.get('materia'))%2 !=  0:
-                print (request.POST.get('materia'))
-                return render (request, "materias/series/9ano/matematica/matematica9.html")
+                if int(request.POST.get('materia'))%2 == 0:
+
+                    context ={
+                        'professor_instance': form_professor,
+                    }
+
+                    return render (request, "materias/series/9ano/portugues/portugues9.html", context)
+                elif int(request.POST.get('materia'))%2 !=  0:
+
+                    #passando a instancia do rofessor para matematica9.html
+                    context ={
+                        'professor_instance': form_professor,
+                    }
+
+                    return render (request, "materias/series/9ano/matematica/matematica9.html", context)
+
+
+
 
         else:
 
@@ -94,6 +109,57 @@ def index(request):
             }
 
             return render (request, "form.html", context)
+
+
+
+def salvarMatematica(request):
+    print(request.POST.get('professor'))
+    print(request.POST.get('p1'))
+    if request.method == "POST":
+        print("chegou no Post")
+        for i in range(1, 7):
+            form_resposta = RespostaForm(request.POST)
+            if form_resposta.is_valid():
+                print("Vaidou!!")
+                f_cont = form_resposta.save(commit=False)
+                f_cont.professor = Professor.objects.get(id=int(request.POST.get('professor')))
+                f_cont.pergunta = Pergunta.objects.get(id=i)
+                if request.POST.get('p'+str(i)) == 'on':
+                    print("Verdadeiro!!")
+                    f_cont.resposta = True
+                else:
+                    print("falso!!")
+                    f_cont.resposta = False
+                f_cont.save()
+
+        return render(request, "index.html")
+
+
+
+def salvarPortugues(request):
+    print(request.POST.get('professor'))
+    print(request.POST.get('p1'))
+    if request.method == "POST":
+        print("chegou no Post")
+        for i in range(1, 11):
+            form_resposta = RespostaForm(request.POST)
+            if form_resposta.is_valid():
+                print("Vaidou!!")
+                f_cont = form_resposta.save(commit=False)
+                f_cont.professor = Professor.objects.get(id=int(request.POST.get('professor')))
+                f_cont.pergunta = Pergunta.objects.get(id=i+6)
+                if request.POST.get('p'+str(i)) == 'on':
+                    print("Verdadeiro!!")
+                    f_cont.resposta = True
+                else:
+                    print("falso!!")
+                    f_cont.resposta = False
+                f_cont.save()
+
+        return render(request, "index.html")
+
+
+
 
 def getCoordenadorias(request):
     data = json.loads(request.body)

@@ -5,8 +5,16 @@
 <center><h1>Formulário do Componente Curricular de Matemática</h1></center>
 <br>
 <div class="top-buffer">
-    <form action="{% url 'questoes' %}" method="post" >
+    <form action="{% url 'matematica' %}" method="post" >
     {% csrf_token %}
+
+    <div style="display: none;">
+        <label>professor</label>
+            <select name="professor" id="id_professor">
+                <option value="{{professor_instance.instance.id}}">{{professor_instance.instance.nome}}</option>
+            </select>
+        </div>
+
     <div >
 
         <div>
@@ -158,11 +166,15 @@
 
         </table>
 
+
+
         <table name="bim3" id="bim3_id" style="display:none">
             <tr>
                 <td> 3 bimestre</td>
             </tr>
         </table>
+
+
 
         <table name="bim4" id="bim4_id" style="display:none">
             <tr>
@@ -171,7 +183,10 @@
         </table>
 
     </div>
-
+        <div class="row">
+            <button class='btn btn-success' type="submit" style="margin-right: 5px;margin-left:5px; margin-bottom:5px">Salvar</button>
+            <a class="btn btn-danger" style="margin-bottom:5px;"  href="{% url 'inicio' %}">Cancelar</a>
+        </div>
      </form>
      <script>
          let coleta_field = document.getElementById("coleta_id")
@@ -238,10 +253,6 @@
 
      </script>
 
-      <div class="row">
-         <button class='btn btn-success' type="submit" style="margin-right: 5px;margin-left:5px; margin-bottom:5px">Salvar</button>
-         <a class="btn btn-danger" style="margin-bottom:5px;"  href="{% url 'inicio' %}">Cancelar</a>
-     </div>
 
     </div>
 

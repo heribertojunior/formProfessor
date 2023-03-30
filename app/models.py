@@ -90,7 +90,7 @@ class Pergunta(models.Model):
         return self.pergunta
 
 class Resposta(models.Model):
-    resposta = models.BooleanField('Sim')
+    resposta = models.BooleanField()
     professor = models.ForeignKey(Professor, on_delete=CASCADE)
     pergunta = models.ForeignKey(Pergunta, on_delete=CASCADE)
 
