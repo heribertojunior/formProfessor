@@ -77,17 +77,17 @@ def index(request):
           # f_cont.save()
             serie = Serie.objects.get(id=int(request.POST.get('serie')))
             print(serie.serie)
-            if serie.serie == "9º Ano EF":
-
+            if serie.serie == "9 º  Ano EF":
+                print("Entrou no if Serie")
                 if int(request.POST.get('materia'))%2 == 0:
-
+                    print("Entrou no if Materia")
                     context ={
                         'professor_instance': form_professor,
                     }
 
                     return render (request, "materias/series/9ano/portugues/portugues9.html", context)
                 elif int(request.POST.get('materia'))%2 !=  0:
-
+                    print("Entrou no if Materia")
                     #passando a instancia do rofessor para matematica9.html
                     context ={
                         'professor_instance': form_professor,
@@ -95,7 +95,8 @@ def index(request):
 
                     return render (request, "materias/series/9ano/matematica/matematica9.html", context)
 
-
+            else:
+                return render (request, "index.html")
 
 
         else:

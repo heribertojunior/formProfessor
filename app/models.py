@@ -71,7 +71,7 @@ class Materia(models.Model):
 
     materia = models.CharField(max_length=25, verbose_name='Componente Curricular')
     serie = models.ForeignKey(Serie, on_delete=CASCADE)
-
+ 
     def __str__(self):
         return self.materia
 
@@ -85,6 +85,7 @@ class Bimestre(models.Model):
 class Pergunta(models.Model):
     bimestref = models.ForeignKey('Bimestref', on_delete=CASCADE)
     pergunta = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.pergunta
